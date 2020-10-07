@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import * as parkDate from "./data/accessData.json";
+import * as accessData from "./data/accessData.json";
 require("dotenv").config();
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
               setViewport(viewport);
             }}
           >
-            {parkDate.features.map((accessUser) => (
+            {accessData.features.map((accessUser) => (
               <Marker
                 key={accessUser.properties.id}
                 latitude={accessUser.geometry.coordinates[1]}
@@ -70,6 +70,14 @@ function App() {
                   <h2>{selectedUser.properties.name}</h2>
                   <p>id: {selectedUser.properties.id}</p>
                   <p>Access From: {selectedUser.properties.city}</p>
+                  <p>Access Date: {selectedUser.properties.accessDate}</p>
+                  <p>
+                    Accessed Herbrium :{" "}
+                    {selectedUser.properties.AccessedHerbrium.name}
+                  </p>
+                  <button>
+                    <a href="www.fakelink.com">Detailed Info</a>
+                  </button>
                 </div>
               </Popup>
             ) : null}
